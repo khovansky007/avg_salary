@@ -57,12 +57,19 @@ class hh_analyst:
         self.__get_count_pages()
         if '?' in self.url: char = '&'
         else: char = '?'
-        for num_page in range(self.count_pages):
-            url = f"{self.url}{char}page={num_page}"
-            self.__get_prices(url)
-            print(f"{num_page+1} page scanned")
+        if self.count_pages != 0:
+            for num_page in range(self.count_pages):
+                url = f"{self.url}{char}page={num_page}"
+                self.__get_prices(url)
+                print(f"{num_page+1} page scanned")
+        else:
+            self.__get_prices(self.url)
+            print(f"page scanned")
 
-        avg_price = sum(self.all_prices)/len(self.all_prices)
+        if len(self.all_prices) != 0:
+            avg_price = sum(self.all_prices)/len(self.all_prices)
+        else:
+            avg_price = sum(self.all_prices)
         return f"{int(avg_price)} ₽"
 
 

@@ -18,7 +18,8 @@ class hh_analyst:
         nums_pages = []
         for i in soup.find_all('a', {'data-qa': 'pager-page'}):
             nums_pages.append(i.find('span').text)
-        count_pages = int(nums_pages[-1])
+        if nums_pages != []: count_pages = int(nums_pages[-1])
+        else: count_pages = 0
         self.count_pages = count_pages
 
     
@@ -29,6 +30,7 @@ class hh_analyst:
         prices = soup.find_all('span', {'data-qa': 'vacancy-serp__vacancy-compensation'})
         for item in prices:
             price = item.text
+            copy_price = price
             price_encode = price.encode("ascii", "ignore")
             price = price_encode.decode()
             if '  ' in price:
@@ -45,7 +47,9 @@ class hh_analyst:
                 price = [symbol for symbol in price if symbol in '0123456789']
                 price = ''.join(price)
                 price = int(price)
-
+            if '$' in copy_price: price *= 80
+            elif '₽' in copy_price: price = price
+            elif '€' in copy_price: price *= 95
             self.all_prices.append(price)
 
 

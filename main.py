@@ -63,8 +63,8 @@ class hh_analyst:
 
 
 
-
-url = input("Link: ")
-x = hh_analyst(url)
-print(x.main())
-input('End')
+while True:
+    url = input("Link: ")
+    x = hh_analyst(url)
+    print(x.main())
+    input('End. Press any key to continue.')

@@ -51,7 +51,7 @@ class hh_analyst:
 
     def main(self):
         self.__get_count_pages()
-        if '&' in self.url: char = '&'
+        if '?' in self.url: char = '&'
         else: char = '?'
         for num_page in range(self.count_pages):
             url = f"{self.url}{char}page={num_page}"

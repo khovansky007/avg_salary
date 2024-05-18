@@ -68,9 +68,9 @@ class hh_analyst:
         return f"{int(avg_price)} ₽"
 
 
-
-while True:
-    url = input("Link: ")
-    x = hh_analyst(url)
-    print(x.GetMedianSalary())
-    input('End. Press any key to continue.')
+if __name__ == '__main__':
+    while True:
+        url = input("Link: ")
+        app = hh_analyst(url)
+        print(app.GetMedianSalary())
+        input('End. Press any key to continue.')

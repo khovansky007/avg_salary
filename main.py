@@ -5,13 +5,10 @@ from bs4 import BeautifulSoup as bs
 
 
 class hh_analyst:
-    
-
     def __init__(self, url = input()):
         self.url = url
         self.all_prices = []
     
-
     def __get_count_pages(self):
         responce = requests.get(self.url, headers = {'User-Agent': UserAgent().random})
         soup = bs(responce.text, 'lxml')
@@ -22,7 +19,6 @@ class hh_analyst:
         else: count_pages = 0
         self.count_pages = count_pages
 
-    
     def __get_prices(self, url):
         ua = UserAgent().random
         responce = requests.get(url, headers = {'User-Agent': ua})
@@ -52,8 +48,7 @@ class hh_analyst:
             elif '€' in copy_price: price *= 95
             self.all_prices.append(price)
 
-
-    def main(self):
+    def GetMedianSalary(self):
         self.__get_count_pages()
         if '?' in self.url: char = '&'
         else: char = '?'
@@ -77,5 +72,5 @@ class hh_analyst:
 while True:
     url = input("Link: ")
     x = hh_analyst(url)
-    print(x.main())
+    print(x.GetMedianSalary())
     input('End. Press any key to continue.')
